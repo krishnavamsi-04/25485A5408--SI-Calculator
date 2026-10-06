@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Intrest calculator</title>
+</head>
+<body>
+<center>
+    <h1 style="color: blue;">simple intrest calculator</h1>
+
+    <form  method="POST">
+    <input type="number" step="any" name="p" id="" placeholder="Enter principle amount" required>
+    <input type="number" step="any" name="t" id="" placeholder="Time (in years)" required>
+    <input type="number" step="any" name="r" id="" placeholder="Rate of Interest (%)" required>
+    <button type="submit">Calculate Interest</button>    
+</form>
+</center>
+
+{# Display output#}
+<LEGEND>
+{% if result%}
+    <hr>
+    <h3>Result,</h3>
+        <span>Principle Amount: {{p}}</span><br>
+        <span>Time (in years): {{t}}</span><br>
+        <span>Rate of Interest: {{r}}</span><br>
+        <span>
+           <b>Simple Interest: {{result}}</b>
+           <b>Total Amount: {{total}}</b>
+        </span><br>
+{% endif %}
+</LEGEND>
+
+</body>
+</html>
