@@ -1,34 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Intrest calculator</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Simple Interest Calculator</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 420px; margin: 40px auto; text-align: center; }
+        h1 { color: blue; }
+        input, button { display: block; width: 100%; padding: 8px; margin: 8px 0; box-sizing: border-box; }
+        .error { color: red; }
+        .result { text-align: left; }
+    </style>
 </head>
 <body>
-<center>
-    <h1 style="color: blue;">simple intrest calculator</h1>
+    <h1>Simple Interest Calculator</h1>
 
-    <form  method="POST">
-    <input type="number" step="any" name="p" id="" placeholder="Enter principle amount" required>
-    <input type="number" step="any" name="t" id="" placeholder="Time (in years)" required>
-    <input type="number" step="any" name="r" id="" placeholder="Rate of Interest (%)" required>
-    <button type="submit">Calculate Interest</button>    
-</form>
-</center>
+    <form method="POST">
+        <input type="number" step="any" min="0" name="p" placeholder="Principal amount" required>
+        <input type="number" step="any" min="0" name="t" placeholder="Time (in years)" required>
+        <input type="number" step="any" min="0" name="r" placeholder="Rate of interest (%)" required>
+        <button type="submit">Calculate Interest</button>
+    </form>
 
-{# Display output#}
-<LEGEND>
-{% if result%}
-    <hr>
-    <h3>Result,</h3>
-        <span>Principle Amount: {{p}}</span><br>
-        <span>Time (in years): {{t}}</span><br>
-        <span>Rate of Interest: {{r}}</span><br>
-        <span>
-           <b>Simple Interest: {{result}}</b>
-           <b>Total Amount: {{total}}</b>
-        </span><br>
-{% endif %}
-</LEGEND>
+    {% if error %}
+        <p class="error">{{ error }}</p>
+    {% endif %}
 
+    {% if result is defined %}
+        <hr>
+        <div class="result">
+            <h3>Result</h3>
+            <p>Principal Amount: {{ p }}</p>
+            <p>Time (in years): {{ t }}</p>
+            <p>Rate of Interest: {{ r }}%</p>
+            <p><b>Simple Interest: {{ "%.2f"|format(result) }}</b></p>
+            <p><b>Total Amount: {{ "%.2f"|format(total) }}</b></p>
+        </div>
+    {% endif %}
 </body>
 </html>
